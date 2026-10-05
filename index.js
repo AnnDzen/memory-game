@@ -313,7 +313,52 @@ function saveScoreAutomatically() {
     localStorage.setItem('memory_scores', JSON.stringify(scores));
 }
 
-
+function showLeaderboard() {
+    
+    while (leaderboardList.firstChild) {
+        leaderboardList.removeChild(leaderboardList.firstChild);
+    }
+    
+    const scores = JSON.parse(localStorage.getItem('memory_scores')) || [];
+    
+    if (scores.length === 0) {
+        const emptyMsg = document.createElement('li');
+        emptyMsg.classList.add('leaderboard-item');
+        emptyMsg.style.justifyContent = 'center';
+        emptyMsg.style.color = '#6b4633';
+        emptyMsg.textContent = 'Пока нет результатов';
+        leaderboardList.appendChild(emptyMsg);
+    } else {
+        scores.forEach((entry, index) => {
+            const item = document.createElement('li');
+            item.classList.add('leaderboard-item');
+            
+           
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = `${index + 1}. ${entry.name}`;
+            nameSpan.style.flex = '1';
+            
+           
+            const scoreSpan = document.createElement('span');
+            scoreSpan.textContent = `${entry.moves} ходов`;
+            scoreSpan.style.flex = '1';
+            scoreSpan.style.textCenter = 'center';
+            
+            
+            const dateSpan = document.createElement('span');
+            dateSpan.textContent = entry.date;
+            dateSpan.style.flex = '1';
+            dateSpan.style.textAlign = 'right';
+            dateSpan.style.color = '#ba621c'; 
+            
+            item.appendChild(nameSpan);
+            item.appendChild(scoreSpan);
+            item.appendChild(dateSpan);
+            leaderboardList.appendChild(item);
+        });
+    }
+}
+ 
 
 
 newGameBtn.addEventListener('click', createBoard);
