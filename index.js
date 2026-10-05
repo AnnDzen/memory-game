@@ -240,3 +240,53 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
+function openWinModal() {
+    winModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWinModal() {
+    winModal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function openLeaderModal() {
+    showLeaderboard();
+    leaderModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLeaderModal() {
+    leaderModal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+
+modalCloseWinBtn.addEventListener('click', closeWinModal);
+
+
+winModal.addEventListener('click', (e) => {
+    if (e.target === winModal) closeWinModal();
+});
+leaderModal.addEventListener('click', (e) => {
+    if (e.target === leaderModal) closeLeaderModal();
+});
+
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (winModal.classList.contains('show')) closeWinModal();
+        if (leaderModal.classList.contains('show')) closeLeaderModal();
+    }
+});
+
+
+createBoard();
+
+
+newGameBtn.addEventListener('click', createBoard);
+modalNewGameBtn.addEventListener('click', createBoard);
+
+
+leaderboardBtn.addEventListener('click', openLeaderModal);
+closeLeaderBtn.addEventListener('click', closeLeaderModal);
