@@ -281,12 +281,44 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-createBoard();
+function saveScoreAutomatically() {
+   
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); 
+    const year = now.getFullYear();
+    const formattedDate = `${day}.${month}.${year}`; 
+
+    const scoreData = { 
+        name: 'Игрок', 
+        moves: movesCount, 
+        date: formattedDate,
+        timestamp: now.getTime() 
+    };
+    
+    let scores = JSON.parse(localStorage.getItem('memory_scores')) || [];
+    scores.push(scoreData);
+    
+   
+    scores.sort((a, b) => {
+        if (a.moves !== b.moves) {
+            return a.moves - b.moves;
+        }
+        return a.timestamp - b.timestamp;
+    });
+    
+    
+    scores = scores.slice(0, 10); 
+    
+    localStorage.setItem('memory_scores', JSON.stringify(scores));
+}
+
+
 
 
 newGameBtn.addEventListener('click', createBoard);
 modalNewGameBtn.addEventListener('click', createBoard);
-
-
 leaderboardBtn.addEventListener('click', openLeaderModal);
 closeLeaderBtn.addEventListener('click', closeLeaderModal);
+
+createBoard();
