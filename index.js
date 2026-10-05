@@ -119,6 +119,7 @@ let lockBoard = false;
 let firstCard, secondCard;
 let matchesCount = 0;
 let movesCount = 0;
+let unflipTimer;
 
 function updateStats() {
     movesDisplay.textContent = `Ходы: ${movesCount}`;
@@ -126,6 +127,12 @@ function updateStats() {
 }
 
 function createBoard() {
+
+    clearTimeout(unflipTimer);
+
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null];
+
 
     while (gameBoard.firstChild) {
         gameBoard.removeChild(gameBoard.firstChild);
@@ -229,7 +236,7 @@ function disableCards() {
 function unflipCards() {
     lockBoard = true;
 
-    setTimeout(() => {
+    unflipTimer = setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
         resetBoard();
