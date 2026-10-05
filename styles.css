@@ -5,7 +5,7 @@
 }
 
 body {
-     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8dfb8;
     background: linear-gradient(135deg, #f8dfb8 0%, #f3d19e 100%);
     display: flex;
@@ -17,8 +17,8 @@ body {
 
 .game-header {
     width: 100%;
-    background-color: #253812; 
-    color: #f8dfb8; 
+    background-color: #253812;
+    color: #f8dfb8;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@ body {
 .header-title {
     font-size: 1.6rem;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .header-nav {
@@ -43,13 +43,13 @@ body {
     padding: 10px 20px;
     font-size: 1rem;
     color: #f8dfb8;
-    background-color: #ba621c; 
+    background-color: #ba621c;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
@@ -58,8 +58,8 @@ body {
 }
 
 .btn-secondary {
-    background-color: #e09d30; 
-    color: #253812; 
+    background-color: #e09d30;
+    color: #253812;
 }
 
 .btn-secondary:hover {
@@ -74,13 +74,13 @@ body {
 .stats-panel {
     font-size: 1.2rem;
     margin-bottom: 25px;
-    color: #253812; 
+    color: #253812;
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.6);
     padding: 10px 25px;
     border-radius: 20px;
-    display: inline-flex; 
-    gap: 30px; 
+    display: inline-flex;
+    gap: 30px;
     border: 1px solid rgba(224, 157, 48, 0.3);
     box-shadow: 0 2px 8px rgba(107, 70, 51, 0.05);
 }
@@ -90,14 +90,14 @@ body {
 }
 
 .memory-game {
-    
-    width: 600px;  
-    height: 600px; 
-    
+
+    width: 600px;
+    height: 600px;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    gap: 15px; 
+    gap: 15px;
     perspective: 1000px;
 }
 
@@ -126,7 +126,7 @@ body {
     backface-visibility: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(107, 70, 51, 0.15);
-    border: 3px solid #f8dfb8; 
+    border: 3px solid #f8dfb8;
 }
 
 .card-front {
@@ -144,15 +144,15 @@ body {
 
 
 .card-back {
-    background-color: #6b4633; 
+    background-color: #6b4633;
     transform: rotateY(0deg);
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .card-back-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -165,7 +165,7 @@ body {
     left: 6px;
     right: 6px;
     bottom: 6px;
-    border: 1px dashed rgba(224, 157, 48, 0.5); 
+    border: 1px dashed rgba(224, 157, 48, 0.5);
     border-radius: 6px;
     pointer-events: none;
 }
@@ -189,7 +189,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(37, 56, 18, 0.5); 
+    background-color: rgba(37, 56, 18, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -205,11 +205,11 @@ body {
 }
 
 .modal-content {
-    background-color: #f8dfb8; 
+    background-color: #f8dfb8;
     padding: 35px 40px;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     transform: translateY(-50px);
     transition: transform 0.3s ease;
     min-width: 320px;
@@ -224,32 +224,69 @@ body {
     font-size: 2.2rem;
     margin-bottom: 15px;
     color: #ba621c;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .modal-content p {
-    color: #6b4633; 
+    color: #6b4633;
     font-size: 1.1rem;
     margin-bottom: 20px;
 }
 
+.leader-input {
+    padding: 10px 14px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 2px solid #e09d30;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #6b4633;
+    outline: none;
+}
+
+.leader-input:focus {
+    border-color: #ba621c;
+    box-shadow: 0 0 5px rgba(186, 98, 28, 0.3);
+}
+
+.leaderboard-list {
+    list-style: none;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e09d30;
+    font-size: 1.1rem;
+    color: #6b4633;
+    gap: 15px;
+}
+
+
+
+
 @media (max-width: 650px) {
     .memory-game {
-        
+
         width: 450px;
         height: 450px;
         gap: 10px;
     }
-    
+
     .card-face {
-        border-width: 2px; 
+        border-width: 2px;
     }
 }
 
 
 @media (max-width: 480px) {
     .game-header {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 15px;
         padding: 15px;
         text-align: center;
@@ -262,9 +299,9 @@ body {
     }
 
     .btn {
-        padding: 8px 12px; 
+        padding: 8px 12px;
         font-size: 0.9rem;
-        flex: 1; 
+        flex: 1;
         max-width: 150px;
     }
 
@@ -275,15 +312,15 @@ body {
     }
 
     .memory-game {
-       
+
         width: 92vw;
-        height: 92vw; 
-        gap: 8px; 
+        height: 92vw;
+        gap: 8px;
     }
-    
+
     .modal-content {
         padding: 25px 20px;
-        min-width: 90vw; 
+        min-width: 90vw;
     }
 
     .modal-content h2 {

@@ -126,7 +126,7 @@ function updateStats() {
 }
 
 function createBoard() {
-    
+
     while (gameBoard.firstChild) {
         gameBoard.removeChild(gameBoard.firstChild);
     }
@@ -136,6 +136,7 @@ function createBoard() {
     updateStats();
 
     closeWinModal();
+    closeLeaderModal();
 
 
 
@@ -144,7 +145,7 @@ function createBoard() {
         [cards[i], cards[j]] = [cards[j], cards[i]];
     }
 
-   
+
     cards.forEach((imageSrc, index) => {
         const card = document.createElement('div');
         card.classList.add('memory-card');
@@ -214,7 +215,7 @@ function disableCards() {
     updateStats();
 
     if (matchesCount === images.length) {
-        saveScoreAutomatically(); 
+        saveScoreAutomatically();
 
         setTimeout(() => {
             winText.textContent = `Вы нашли все пары за ${movesCount} ходов!`;
@@ -282,45 +283,45 @@ document.addEventListener('keydown', (e) => {
 
 
 function saveScoreAutomatically() {
-   
+
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0'); 
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
-    const formattedDate = `${day}.${month}.${year}`; 
+    const formattedDate = `${day}.${month}.${year}`;
 
-    const scoreData = { 
-        name: 'Игрок', 
-        moves: movesCount, 
+    const scoreData = {
+        name: 'Игрок',
+        moves: movesCount,
         date: formattedDate,
-        timestamp: now.getTime() 
+        timestamp: now.getTime()
     };
-    
+
     let scores = JSON.parse(localStorage.getItem('memory_scores')) || [];
     scores.push(scoreData);
-    
-   
+
+
     scores.sort((a, b) => {
         if (a.moves !== b.moves) {
             return a.moves - b.moves;
         }
         return a.timestamp - b.timestamp;
     });
-    
-    
-    scores = scores.slice(0, 10); 
-    
+
+
+    scores = scores.slice(0, 10);
+
     localStorage.setItem('memory_scores', JSON.stringify(scores));
 }
 
 function showLeaderboard() {
-    
+
     while (leaderboardList.firstChild) {
         leaderboardList.removeChild(leaderboardList.firstChild);
     }
-    
+
     const scores = JSON.parse(localStorage.getItem('memory_scores')) || [];
-    
+
     if (scores.length === 0) {
         const emptyMsg = document.createElement('li');
         emptyMsg.classList.add('leaderboard-item');
@@ -332,25 +333,25 @@ function showLeaderboard() {
         scores.forEach((entry, index) => {
             const item = document.createElement('li');
             item.classList.add('leaderboard-item');
-            
-           
+
+
             const nameSpan = document.createElement('span');
             nameSpan.textContent = `${index + 1}. ${entry.name}`;
             nameSpan.style.flex = '1';
-            
-           
+
+
             const scoreSpan = document.createElement('span');
             scoreSpan.textContent = `${entry.moves} ходов`;
             scoreSpan.style.flex = '1';
             scoreSpan.style.textCenter = 'center';
-            
-            
+
+
             const dateSpan = document.createElement('span');
             dateSpan.textContent = entry.date;
             dateSpan.style.flex = '1';
             dateSpan.style.textAlign = 'right';
-            dateSpan.style.color = '#ba621c'; 
-            
+            dateSpan.style.color = '#ba621c';
+
             item.appendChild(nameSpan);
             item.appendChild(scoreSpan);
             item.appendChild(dateSpan);
@@ -358,7 +359,7 @@ function showLeaderboard() {
         });
     }
 }
- 
+
 
 
 newGameBtn.addEventListener('click', createBoard);
